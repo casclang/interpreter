@@ -18,8 +18,8 @@ while (true)
     {
         linesOfCode.lines.Add("}");
     }
-    // Include libraries
-    if (input == "include {")
+    // Include namespaces
+    if (input == "Namespace {")
     {
         while (true)
         {
@@ -37,6 +37,7 @@ while (true)
     // System.Output method
     if (input == "System.Output {")
     {
+        if (!linesOfCode.lines.Contains("using System;")) Error("Error: System namespace must be invoked.");
         Console.ForegroundColor = ConsoleColor.Red;
         string outputContent = Console.ReadLine().Trim();
         Console.ForegroundColor = ConsoleColor.Magenta;
@@ -46,6 +47,7 @@ while (true)
     }
     if (input == "System.Output.line {")
     {
+        if (!linesOfCode.lines.Contains("using System;")) Error("Error: System namespace must be invoked.");
         Console.ForegroundColor = ConsoleColor.Red;
         string outputContent = Console.ReadLine().Trim();
         Console.ForegroundColor = ConsoleColor.Magenta;
@@ -56,16 +58,18 @@ while (true)
     // System.Input method
     if (input == "System.Input.line {")
     {
+        if (!linesOfCode.lines.Contains("using System;")) Error("Error: System namespace must be invoked.");
         Console.ForegroundColor = ConsoleColor.Red;
         string inputVariable = Console.ReadLine().Trim();
         Console.ForegroundColor = ConsoleColor.Magenta;
         string endingArgument = Console.ReadLine().Trim();
         if (endingArgument != "}") Error("Error: System.Input method requires closing argument");
-        linesOfCode.lines.Add($"var {inputVariable} = Console.ReadLine();");
+        linesOfCode.lines.Add($"string {inputVariable} = Console.ReadLine();");
     }
     // System.Variable method
     if (input == "System.Variable.string {")
     {
+        if (!linesOfCode.lines.Contains("using System;")) Error("Error: System namespace must be invoked.");
         Console.ForegroundColor = ConsoleColor.Red;
         string variableData = Console.ReadLine().Trim();
         if (variableData == "") Error("Error: System.Variable method must have a named variable and assigned a value.");
@@ -76,6 +80,7 @@ while (true)
     }
     if (input == "System.Variable.integer {")
     {
+        if (!linesOfCode.lines.Contains("using System;")) Error("Error: System namespace must be invoked.");
         Console.ForegroundColor = ConsoleColor.Red;
         string variableData = Console.ReadLine().Trim();
         if (variableData == "") Error("Error: System.Variable method must have a named variable and assigned a value.");
@@ -86,6 +91,7 @@ while (true)
     }
     if (input == "System.Variable.float {")
     {
+        if (!linesOfCode.lines.Contains("using System;")) Error("Error: System namespace must be invoked.");
         Console.ForegroundColor = ConsoleColor.Red;
         string variableData = Console.ReadLine().Trim();
         if (variableData == "") Error("Error: System.Variable method must have a named variable and assigned a value.");
@@ -96,6 +102,7 @@ while (true)
     }
     if (input == "System.Variable.boolean {")
     {
+        if (!linesOfCode.lines.Contains("using System;")) Error("Error: System namespace must be invoked.");
         Console.ForegroundColor = ConsoleColor.Red;
         string variableData = Console.ReadLine().Trim();
         if (variableData == "") Error("Error: System.Variable method must have a named variable and assigned a value.");
@@ -106,6 +113,7 @@ while (true)
     }
     if (input == "System.Variable.modify {")
     {
+        if (!linesOfCode.lines.Contains("using System;")) Error("Error: System namespace must be invoked.");
         Console.ForegroundColor = ConsoleColor.Red;
         string variableData = Console.ReadLine().Trim();
         if (variableData == "") Error("Error: System.Variable method must have a named variable and an argument.");
@@ -117,6 +125,7 @@ while (true)
     // Methods
     if (input == "System.Method.void {")
     {
+        if (!linesOfCode.lines.Contains("using System;")) Error("Error: System namespace must be invoked.");
         Console.ForegroundColor = ConsoleColor.Yellow;
         string methodName = Console.ReadLine().Trim();
         if (methodName == "") Error("Error: System.Method method must have a named Method and argument.");
@@ -125,6 +134,7 @@ while (true)
     }
     if (input == "System.Method.string {")
     {
+        if (!linesOfCode.lines.Contains("using System;")) Error("Error: System namespace must be invoked.");
         Console.ForegroundColor = ConsoleColor.Yellow;
         string methodName = Console.ReadLine().Trim();
         if (methodName == "") Error("Error: System.Method method must have a named Method and argument.");
@@ -133,6 +143,7 @@ while (true)
     }
     if (input == "System.Method.integer {")
     {
+        if (!linesOfCode.lines.Contains("using System;")) Error("Error: System namespace must be invoked.");
         Console.ForegroundColor = ConsoleColor.Yellow;
         string methodName = Console.ReadLine().Trim();
         if (methodName == "") Error("Error: System.Method method must have a named Method and argument.");
@@ -141,6 +152,7 @@ while (true)
     }
     if (input == "System.Method.boolean {")
     {
+        if (!linesOfCode.lines.Contains("using System;")) Error("Error: System namespace must be invoked.");
         Console.ForegroundColor = ConsoleColor.Yellow;
         string methodName = Console.ReadLine().Trim();
         if (methodName == "") Error("Error: System.Method method must have a named Method and argument.");
@@ -149,6 +161,7 @@ while (true)
     }
     if (input == "System.Method.float {")
     {
+        if (!linesOfCode.lines.Contains("using System;")) Error("Error: System namespace must be invoked.");
         Console.ForegroundColor = ConsoleColor.Yellow;
         string methodName = Console.ReadLine().Trim();
         if (methodName == "") Error("Error: System.Method method must have a named Method and argument.");
@@ -157,6 +170,7 @@ while (true)
     }
     if (input == "System.Method.call {")
     {
+        if (!linesOfCode.lines.Contains("using System;")) Error("Error: System namespace must be invoked.");
         Console.ForegroundColor = ConsoleColor.Yellow;
         string methodName = Console.ReadLine().Trim();
         if (methodName == "") Error("Error: System.Method.call argument must include a method to be called");
@@ -167,6 +181,7 @@ while (true)
     }
     if (input == "System.Method.return {")
     {
+        if (!linesOfCode.lines.Contains("using System;")) Error("Error: System namespace must be invoked.");
         Console.ForegroundColor = ConsoleColor.Yellow;
         string returnValue = Console.ReadLine().Trim();
         if (returnValue == "") Error("Error: System.Method.return cannot be null.");
@@ -203,17 +218,20 @@ while (true)
     // If statements 
     if (input == "System.If {")
     {
+        if (!linesOfCode.lines.Contains("using System;")) Error("Error: System namespace must be invoked.");
         Console.ForegroundColor = ConsoleColor.Red;
         string statement = Console.ReadLine().Trim();
         linesOfCode.lines.Add($"if {statement}");
     }
     if (input == "System.If.else {")
     {
+        if (!linesOfCode.lines.Contains("using System;")) Error("Error: System namespace must be invoked.");
         linesOfCode.lines.Add("else");
         linesOfCode.lines.Add("{");
     }
     if (input == "System.If.elseif {")
     {
+        if (!linesOfCode.lines.Contains("using System;")) Error("Error: System namespace must be invoked.");
         Console.ForegroundColor = ConsoleColor.Red;
         string statement = Console.ReadLine().Trim();
         linesOfCode.lines.Add($"else if {statement}");
@@ -221,6 +239,7 @@ while (true)
     // While Method
     if (input == "System.While {")
     {
+        if (!linesOfCode.lines.Contains("using System;")) Error("Error: System namespace must be invoked.");
         Console.ForegroundColor = ConsoleColor.Red;
         string statement = Console.ReadLine().Trim();
         linesOfCode.lines.Add($"while {statement}");
@@ -228,20 +247,22 @@ while (true)
     // For Method
     if (input == "System.For {")
     {
+        if (!linesOfCode.lines.Contains("using System;")) Error("Error: System namespace must be invoked.");
         Console.ForegroundColor = ConsoleColor.Red;
         string statement = Console.ReadLine().Trim();
         linesOfCode.lines.Add($"foreach {statement}");
     } 
     if (input == "System.For.each {")
     {
+        if (!linesOfCode.lines.Contains("using System;")) Error("Error: System namespace must be invoked.");
         Console.ForegroundColor = ConsoleColor.Red;
         string statement = Console.ReadLine().Trim();
         linesOfCode.lines.Add($"foreach {statement}");
     }
     // Debug
-    if (input == "System.Debug{}") Debug();
+    if (input == "Debug{}") Debug();
     // Build
-    if (input == "System.Build{}") Build();
+    if (input == "Build{}") Build();
 }
 
 
