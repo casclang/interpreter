@@ -19,7 +19,7 @@ while (true)
         linesOfCode.lines.Add("}");
     }
     // Include libraries
-    if (input == "include {")
+    if (input == "Namespace {")
     {
         while (true)
         {
@@ -239,9 +239,9 @@ while (true)
         linesOfCode.lines.Add($"foreach {statement}");
     }
     // Debug
-    if (input == "System.Debug{}") Debug();
+    if (input == "Debug{}") Debug();
     // Build
-    if (input == "System.Build{}") Build();
+    if (input == "Build{}") Build();
 }
 
 
